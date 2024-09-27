@@ -28,16 +28,15 @@
       faucibus orci id finibus pharetra.
     </p>
 
-  
-      <span class="article-author">Par {{ article.author }}</span>
-   
+    <span class="article-author">Par {{ article.author }}</span>
+
     <img class="article-image" [src]="article.image" alt="Image de l'article" />
     <p class="article-content">{{ article.content }}</p>
   </div>
 
   <input
     type="text"
-    [(ngModel)]=" article.comment"
+    [(ngModel)]="article.comment"
     placeholder="Ajoutez votre commentaire"
   />
   <button (click)="togglePublication()">
@@ -48,3 +47,28 @@
     <p>L'article est actuellement dépublié.</p>
   </div>
 </div>
+
+<h2>Liste des articles publiés</h2>
+
+@for (article of articles; track $index ) { @if (article.isPublished) {
+<div>
+  <h3 [ngStyle]="{ color: article.likes > 100 ? 'green' : 'red' }">
+    {{ article.title }}
+  </h3>
+  <p><strong>Author:</strong> {{ article.author }}</p>
+  <img [src]="article.image" alt="Image de l'article" />
+  <p
+    [ngClass]="{
+      'popular-article': article.likes > 100
+    }"
+  >
+    {{ article.content }}
+  </p>
+  <p>{{ article.likes }}</p>
+</div>
+}
+<hr />
+}@empty {
+<li>Aucun article publié</li>
+
+}
