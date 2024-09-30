@@ -1,74 +1,26 @@
-<div class="article-container">
-  <h1 class="article-title">{{ article.title }}</h1>
-  <div *ngIf="article.isPublished">
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet
-      enim ac turpis semper vehicula. Pellentesque non leo eu sem iaculis
-      pulvinar quis ut dolor. Nam eget imperdiet urna, porta volutpat sem. Morbi
-      imperdiet tristique consequat. Donec eget arcu elit. Nunc non pharetra
-      arcu. Orci varius natoque penatibus et magnis dis parturient montes,
-      nascetur ridiculus mus. Praesent nec mollis risus. Mauris id velit rutrum,
-      consequat eros nec, ullamcorper mi. Curabitur at sodales nibh. Phasellus
-      egestas risus id orci laoreet, in consectetur tortor imperdiet. Proin
-      convallis porta mauris, ac maximus nisl dapibus vitae. Maecenas tincidunt
-      interdum suscipit. Etiam lobortis porttitor ipsum, condimentum consectetur
-      lorem imperdiet et. Curabitur pulvinar blandit est at tempor. Vestibulum
-      non neque sed eros semper porta sed nec risus. Morbi tincidunt, quam in
-      semper dapibus, ante nunc suscipit risus, in iaculis diam quam sed quam.
-      Nunc eu augue ut ante eleifend condimentum. Vestibulum tincidunt, justo a
-      ornare efficitur, eros nibh tempus nulla, vitae tempus ligula massa non
-      lectus. Vivamus vulputate eros quis congue tristique. Ut nec iaculis
-      massa. In porta eget quam quis ultricies. Donec vulputate odio et finibus
-      facilisis. Vestibulum fringilla, nisl non iaculis ullamcorper, diam est
-      malesuada massa, viverra auctor nulla erat sit amet magna. Aliquam
-      ullamcorper erat non elit fringilla rhoncus. Nulla enim turpis, egestas
-      sit amet cursus non, fermentum sed leo. Quisque mattis ex placerat,
-      consequat nisl eu, euismod tellus. Mauris at lectus vitae mi vulputate
-      venenatis quis vel turpis. Vivamus commodo nec nunc et dapibus. Cras
-      faucibus orci id finibus pharetra.
-    </p>
+<h2>Liste des articles</h2>
+<ul>
+  @for (article of articles ; track $index){
+  <li>
+    <a [routerLink]="['/article', article.id]" routerLinkActive="active">
+      {{ article.title }}
+    </a>
+  </li>
+  } @empty (){
+  <p>aucun article trouvé</p>
+  }
+</ul>
 
-    <span class="article-author">Par {{ article.author }}</span>
-
-    <img class="article-image" [src]="article.image" alt="Image de l'article" />
-    <p class="article-content">{{ article.content }}</p>
-  </div>
-
-  <input
-    type="text"
-    [(ngModel)]="article.comment"
-    placeholder="Ajoutez votre commentaire"
-  />
-  <button (click)="togglePublication()">
-    {{ article.isPublished ? "Masquer l'article" : "Montrer l'article" }}
-  </button>
-
-  <div *ngIf="!article.isPublished">
-    <p>L'article est actuellement dépublié.</p>
-  </div>
-</div>
-
-<h2>Liste des articles publiés</h2>
-
-@for (article of articles; track $index ) { @if (article.isPublished) {
+<h2>Détails de l'article</h2>
+<p>Article ID: {{ articleId }}</p>
+@if (articleId) { @for (article of articles ; track $index) { @if (article.id
+=== articleId) {
 <div>
-  <h3 [ngStyle]="{ color: article.likes > 100 ? 'green' : 'red' }">
-    {{ article.title }}
-  </h3>
-  <p><strong>Author:</strong> {{ article.author }}</p>
-  <img [src]="article.image" alt="Image de l'article" />
-  <p
-    [ngClass]="{
-      'popular-article': article.likes > 100
-    }"
-  >
-    {{ article.content }}
-  </p>
-  <p>{{ article.likes }}</p>
+  <div>
+    <h3>{{ article.title }}</h3>
+    <p><strong>Auteur:</strong> {{ article.author }}</p>
+    <p>{{ article.content }}</p>
+    <img [src]="article.image" alt="{{ article.title }}" />
+  </div>
 </div>
-}
-<hr />
-}@empty {
-<li>Aucun article publié</li>
-
-}
+} }}
