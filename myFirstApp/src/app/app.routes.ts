@@ -9,6 +9,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 export const routes: Routes = [
     // { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: '', component: HomePageComponent },
+    { path: 'home-page/:id', component: HomePageComponent },
     { path: 'article/:id', component: ArticleComponentComponent },
     { path: 'contact', component: ContactFormComponent },
     { path: 'signup', component: SignupFormComponent },

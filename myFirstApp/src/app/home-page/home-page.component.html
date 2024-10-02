@@ -1,3 +1,17 @@
-<app-article-component>
-</app-article-component>
+<!-- <app-article-component>
+</app-article-component> -->
 
+<h2>Liste des articles</h2>
+<ul>
+  @for (article of articles ; track $index){
+  <li>
+    <a [routerLink]="['/home-page', article.id]" routerLinkActive="active">
+      {{ article.title }}
+    </a>
+  </li>
+  } @empty (){
+  <p>aucun article trouvé</p>
+  }
+</ul>
+@if(selectedArticle){
+<app-article-component [article]="selectedArticle"></app-article-component> }

@@ -1,26 +1,16 @@
-<h2>Liste des articles</h2>
-<ul>
-  @for (article of articles ; track $index){
-  <li>
-    <a [routerLink]="['/article', article.id]" routerLinkActive="active">
-      {{ article.title }}
-    </a>
-  </li>
-  } @empty (){
-  <p>aucun article trouvé</p>
-  }
-</ul>
-
-<h2>Détails de l'article</h2>
-<p>Article ID: {{ articleId }}</p>
-@if (articleId) { @for (article of articles ; track $index) { @if (article.id
-=== articleId) {
+@if (article){
 <div>
-  <div>
-    <h3>{{ article.title }}</h3>
-    <p><strong>Auteur:</strong> {{ article.author }}</p>
-    <p>{{ article.content }}</p>
-    <img [src]="article.image" alt="{{ article.title }}" />
-  </div>
+  <h3>{{ article.title }}</h3>
+  <p>Auteur:{{ article.author }}</p>
+  <p>{{ article.content }}</p>
+  <img [src]="article.image" alt="{{ article.title }}" />
+  <p>Nombre de likes: {{ article.likes }}</p>
+  @if(article.isPublished){
+  <p>Cet article est publié.</p>
+  } @if(!article.isPublished){
+  <p>Cet article n'est pas encore publié.</p>
+  }
 </div>
-} }}
+} @if (!article){
+<p>Désolée, aucun article n'a été sélectionné.</p>
+}
