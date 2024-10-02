@@ -10,6 +10,8 @@
   } @if(!article.isPublished){
   <p>Cet article n'est pas encore publié.</p>
   }
+  <button (click)="likeMyArticle()">J'aime</button>
+
 </div>
 } @if (!article){
 <p>Désolée, aucun article n'a été sélectionné.</p>

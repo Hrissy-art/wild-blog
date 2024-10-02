@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 export class HomePageComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   articleId!: number;
+  likeNotify: string | null = null;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
@@ -56,4 +57,7 @@ export class HomePageComponent {
   get selectedArticle() {
     return this.articles.find(article => article.id === this.articleId);
   }
-}
+
+  ArticleIsLiked(title: string) {
+    this.likeNotify = `L'article "${title}" vient d'être liké.`;
+}}

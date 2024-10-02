@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, NgModule, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, Input, NgModule, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, ParamMap, RouterModule } from '@angular/router';
 
@@ -22,7 +22,11 @@ export class ArticleComponentComponent {
     isPublished: boolean, 
     likes: number 
   };
+@Output () likes = new EventEmitter<string>();
+likeMyArticle() {
+  this.article.likes++;
+  this.likes.emit(` ${this.article.title}`);
 
-
+}
 }
 

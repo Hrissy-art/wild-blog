@@ -14,4 +14,9 @@
   }
 </ul>
 @if(selectedArticle){
-<app-article-component [article]="selectedArticle"></app-article-component> }
+<app-article-component [article]="selectedArticle" (likes)="ArticleIsLiked($event)"></app-article-component> }
+
+@if(likeNotify){
+    <div class="notify">
+<p>{{ likeNotify }}</p> 
+</div>}
