@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Message } from '../message.model';
+import { Message } from '../models/message.model';
 import { NgClass } from '@angular/common';
 
 @Component({

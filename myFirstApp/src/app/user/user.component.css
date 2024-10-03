@@ -1,0 +1,48 @@
+.ng-touched {
+  color: green;
+  font-weight: bold;
+}
+
+.ng-untouched {
+  background-color: #c4fffa;
+}
+
+.ng-valid {
+  border-color: green;
+}
+
+.ng-invalid {
+  border-color: red;
+}
+
+input {
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 10px 12px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: gray;
+}
+
+p {
+  color: red;
+}
+
+form {
+  width: 400px;
+  max-width: 100%;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
